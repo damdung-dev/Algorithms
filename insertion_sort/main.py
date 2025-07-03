@@ -1,10 +1,11 @@
 from insertion_sort import InsertionSort
 import numpy as np
+from numpy import random
 
-data=np.array([64, 25, 12, 22, 11])
+user=int(input("Please input a number: "))
+data=np.array(random.randint(1,1000,user))
 print("Original:",data)
 data = InsertionSort(data)
-
 data.sort()
 print(data.__str__())
 

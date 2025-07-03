@@ -1,8 +1,9 @@
 from merge_sort import MergeSort
+from numpy import random
+import numpy as np
 
-arr = [5, 2, 9, 1, 5, 6]
-sorter = MergeSort(arr)
-
+user=input("Type in your order:\n1. increase\n2. decrease\nYour choice: ")
+sorter = MergeSort(np.array(random.randint(1,1000,5)),user)
 print("Original:", sorter.elements)
 sorter.sort()
-print("Sorted:", sorter.elements)
+print("Sorted:", np.array(sorter.elements))

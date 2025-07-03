@@ -1,6 +1,7 @@
 class MergeSort:
-    def __init__(self, elements):
+    def __init__(self, elements, order):
         self.__elements = elements
+        self.__order = order
 
     @property
     def elements(self):
@@ -9,6 +10,14 @@ class MergeSort:
     @elements.setter
     def elements(self, elements):
         self.__elements = elements
+
+    @property
+    def order(self):
+        return self.__order
+
+    @order.setter
+    def order(self, order):
+        self.__order = order
 
     def sort(self):
         self.__elements = self._merge_sort(self.__elements)
@@ -25,15 +34,29 @@ class MergeSort:
     def merge(self, left, right):
         result = []
         compare = scan = 0
+        if self.order=="1":
+            while compare < len(left) and scan < len(right):
+                if left[compare] < right[scan]:
+                    result.append(left[compare])
+                    compare += 1
+                else:
+                    result.append(right[scan])
+                    scan += 1
 
-        while compare < len(left) and scan < len(right):
-            if left[compare] < right[scan]:
-                result.append(left[compare])
-                compare += 1
-            else:
-                result.append(right[scan])
-                scan += 1
+            result.extend(left[compare:])
+            result.extend(right[scan:])
+            return result
+        elif self.order=="2":
+            while compare < len(left) and scan < len(right):
+                if left[compare] > right[scan]:
+                    result.append(left[compare])
+                    compare += 1
+                else:
+                    result.append(right[scan])
+                    scan += 1
 
-        result.extend(left[compare:])
-        result.extend(right[scan:])
-        return result
+            result.extend(left[compare:])
+            result.extend(right[scan:])
+            return result
+        else:
+            print("Invalid choice")
